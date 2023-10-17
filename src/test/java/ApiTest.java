@@ -50,7 +50,7 @@ public class ApiTest {
         ChatCompletionRequest request = new ChatCompletionRequest();
         request.setModel(Model.CHAT_GLM_LITE); // chatGLM_6b_SSE、chatglm_lite、chatglm_lite_32k、chatglm_std、chatglm_pro
 
-        ChatCompletionRequest.Prompt prompt = new ChatCompletionRequest.Prompt(Role.USER.getCode(), "你是谁");
+        ChatCompletionRequest.Prompt prompt = new ChatCompletionRequest.Prompt(Role.USER.getCode(), "用java写一个冒泡排序");
 
         request.setPrompt(Lists.newArrayList(prompt));
 
