@@ -10,6 +10,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSources;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * 配置文件
  *
@@ -35,7 +37,7 @@ public class GmlConfiguration {
 
     private HttpLoggingInterceptor.Level logLevel = HttpLoggingInterceptor.Level.HEADERS;
 
-    private HttpOption httpOption = new HttpOption(450, 450, 450);
+    private HttpOption httpOption = new HttpOption(450, 450, 450, TimeUnit.SECONDS);
 
     public void setApiSecretKey(String apiSecretKey) {
         this.apiSecretKey = apiSecretKey;
@@ -51,7 +53,7 @@ public class GmlConfiguration {
         return EventSources.createFactory(okHttpClient);
     }
 
-    public record HttpOption(long connectTimeout, long writeTimeout, long readTimeout) {
+    public record HttpOption(long connectTimeout, long writeTimeout, long readTimeout, TimeUnit timeUnit) {
         public HttpOption {
             if (connectTimeout < 0 || writeTimeout < 0 || readTimeout < 0) {
                 throw new IllegalArgumentException("invalid http option");
