@@ -1,7 +1,8 @@
 package com.arman.gml.sdk.session;
 
 import com.arman.gml.sdk.model.req.ChatCompletionRequest;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.arman.gml.sdk.model.res.ChatCompletionResponse;
+import com.arman.gml.sdk.model.res.R;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
@@ -13,5 +14,7 @@ import okhttp3.sse.EventSourceListener;
 public interface ChatGmlSession {
 
     EventSource completions(ChatCompletionRequest chatCompletionRequest, EventSourceListener eventSourceListener);
+
+    R<ChatCompletionResponse> completions(ChatCompletionRequest chatCompletionRequest);
 
 }

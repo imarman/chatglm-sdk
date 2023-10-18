@@ -1,6 +1,7 @@
 package com.arman.gml.sdk.model.req;
 
 import com.arman.gml.sdk.model.Model;
+import com.arman.gml.sdk.model.Prompt;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -59,7 +60,5 @@ public class ChatCompletionRequest {
      * sseformat, 用于兼容解决sse增量模式okhttpsse截取data:后面空格问题, [data: hello]。只在增量模式下使用sseFormat。
      */
     private String sseFormat = "data";
-
-    public record Prompt(String role, String content) { }
 
 }

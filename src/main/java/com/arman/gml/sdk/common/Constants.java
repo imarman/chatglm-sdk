@@ -7,10 +7,15 @@ package com.arman.gml.sdk.common;
 public interface Constants {
 
     /**
-     * 请求地址
+     * 请求地址 sse
      * model:模型
      */
     String V3_COMPLETIONS_SSE = "api/paas/v3/model-api/{model}/sse-invoke";
+
+    /**
+     * 同步调用接口
+     */
+    String V3_COMPLETIONS_INVOKE = "api/paas/v3/model-api/{model}/invoke";
 
     String BEARER_HEAD_PREFIX = "Bearer ";
 

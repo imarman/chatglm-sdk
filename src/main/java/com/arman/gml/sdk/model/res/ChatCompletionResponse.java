@@ -1,6 +1,10 @@
 package com.arman.gml.sdk.model.res;
 
+import com.arman.gml.sdk.model.Prompt;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 返回结果
@@ -10,22 +14,17 @@ import lombok.Data;
 @Data
 public class ChatCompletionResponse {
 
-    private String data;
-    private String meta;
+    @JsonProperty("request_id")
+    private String requestId;
 
-    @Data
-    public static class Meta {
-        private String task_status;
-        private Usage usage;
-        private String task_id;
-        private String request_id;
-    }
+    @JsonProperty("task_id")
+    private String taskId;
 
-    @Data
-    public static class Usage {
-        private int completion_tokens;
-        private int prompt_tokens;
-        private int total_tokens;
-    }
+    @JsonProperty("task_status")
+    private String taskStatus;
+
+    private Usage usage;
+
+    private List<Prompt> choices;
 
 }

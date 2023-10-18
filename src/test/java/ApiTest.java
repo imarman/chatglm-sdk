@@ -1,8 +1,11 @@
 import com.arman.gml.sdk.model.EventType;
 import com.arman.gml.sdk.model.Model;
+import com.arman.gml.sdk.model.Prompt;
 import com.arman.gml.sdk.model.Role;
 import com.arman.gml.sdk.model.req.ChatCompletionRequest;
 import com.arman.gml.sdk.model.res.ChatCompletionResponse;
+import com.arman.gml.sdk.model.res.ChatCompletionSseResponse;
+import com.arman.gml.sdk.model.res.R;
 import com.arman.gml.sdk.session.ChatGmlSession;
 import com.arman.gml.sdk.session.ChatGmlSessionFactory;
 import com.arman.gml.sdk.session.GmlConfiguration;
@@ -50,7 +53,7 @@ public class ApiTest {
         ChatCompletionRequest request = new ChatCompletionRequest();
         request.setModel(Model.CHAT_GLM_LITE); // chatGLM_6b_SSE、chatglm_lite、chatglm_lite_32k、chatglm_std、chatglm_pro
 
-        ChatCompletionRequest.Prompt prompt = new ChatCompletionRequest.Prompt(Role.USER.getCode(), "用java写一个冒泡排序");
+        Prompt prompt = new Prompt(Role.USER.getCode(), "用java写一个冒泡排序");
 
         request.setPrompt(Lists.newArrayList(prompt));
 
@@ -64,12 +67,12 @@ public class ApiTest {
                 // ChatCompletionResponse response = JSON.parseObject(data, ChatCompletionResponse.class);
                 // log.info("测试结果 id：{}", id);
                 ObjectMapper objectMapper = new ObjectMapper();
-                ChatCompletionResponse response = objectMapper.readValue(data, ChatCompletionResponse.class);
+                ChatCompletionSseResponse response = objectMapper.readValue(data, ChatCompletionSseResponse.class);
                 // log.info("测试结果 onEvent：{}", response.getData());
                 System.out.print(response.getData());
                 // type 消息类型，add 增量，finish 结束，error 错误，interrupted 中断
                 if (EventType.FINISH.getCode().equals(type)) {
-                    ChatCompletionResponse.Meta meta = objectMapper.readValue(response.getMeta(), ChatCompletionResponse.Meta.class);
+                    ChatCompletionSseResponse.Meta meta = objectMapper.readValue(response.getMeta(), ChatCompletionSseResponse.Meta.class);
                     // ChatCompletionResponse.Meta meta = response.getMeta();
                     log.info("[输出结束] Tokens {}", objectMapper.writeValueAsString(meta));
                 }
@@ -85,6 +88,24 @@ public class ApiTest {
 
         // 等待
         countDownLatch.await();
+    }
+
+    /**
+     * 同步请求测试
+     */
+    @Test
+    public void test_completions2() {
+        ChatCompletionRequest request = new ChatCompletionRequest();
+        request.setModel(Model.CHAT_GLM_PRO);
+
+        Prompt prompt = new Prompt(Role.USER.getCode(), "用java写一个冒泡排序");
+
+        request.setPrompt(Lists.newArrayList(prompt));
+
+        // 请求
+        R<ChatCompletionResponse> response = chatGmlSession.completions(request);
+
+        response.getData().getChoices().stream().map(Prompt::content).forEach(System.out::println);
     }
 
 }
