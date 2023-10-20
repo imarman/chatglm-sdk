@@ -1,11 +1,11 @@
-package com.arman.gml.sdk.session.defaults;
+package com.arman.glm.sdk.session.defaults;
 
-import com.arman.gml.sdk.common.Constants;
-import com.arman.gml.sdk.model.req.ChatCompletionRequest;
-import com.arman.gml.sdk.model.res.ChatCompletionResponse;
-import com.arman.gml.sdk.model.res.R;
-import com.arman.gml.sdk.session.ChatGmlSession;
-import com.arman.gml.sdk.session.GmlConfiguration;
+import com.arman.glm.sdk.model.req.ChatCompletionRequest;
+import com.arman.glm.sdk.model.res.ChatCompletionResponse;
+import com.arman.glm.sdk.model.res.R;
+import com.arman.glm.sdk.session.ChatGlmSession;
+import com.arman.glm.sdk.session.GlmConfiguration;
+import com.arman.glm.sdk.common.Constants;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -24,12 +24,12 @@ import okhttp3.sse.EventSourceListener;
  */
 @AllArgsConstructor
 @Slf4j
-public class DefaultChatGMLSession implements ChatGmlSession {
+public class DefaultChatGLMSession implements ChatGlmSession {
 
     /**
      * OpenAi 接口
      */
-    private final GmlConfiguration gmlConfiguration;
+    private final GlmConfiguration glmConfiguration;
 
     @SneakyThrows
     @Override
@@ -37,7 +37,7 @@ public class DefaultChatGMLSession implements ChatGmlSession {
         ObjectMapper objectMapper = new ObjectMapper();
 
         // 请求地址
-        String url = gmlConfiguration.getApiHost()
+        String url = glmConfiguration.getApiHost()
                 .concat(Constants.V3_COMPLETIONS_SSE)
                 .replace("{model}", chatCompletionRequest.getModel().getCode());
 
@@ -52,7 +52,7 @@ public class DefaultChatGMLSession implements ChatGmlSession {
                 .build();
 
         // 返回事件结果
-        EventSource.Factory factory = gmlConfiguration.createEventRequestFactory();
+        EventSource.Factory factory = glmConfiguration.createEventRequestFactory();
         return factory.newEventSource(request, eventSourceListener);
     }
 
@@ -62,7 +62,7 @@ public class DefaultChatGMLSession implements ChatGmlSession {
         ObjectMapper objectMapper = new ObjectMapper();
 
         // 请求地址
-        String url = gmlConfiguration.getApiHost()
+        String url = glmConfiguration.getApiHost()
                 .concat(Constants.V3_COMPLETIONS_INVOKE)
                 .replace("{model}", chatCompletionRequest.getModel().getCode());
 
@@ -76,7 +76,7 @@ public class DefaultChatGMLSession implements ChatGmlSession {
                 .post(requestBody)
                 .build();
 
-        try (Response response = gmlConfiguration.getOkHttpClient().newCall(request).execute()) {
+        try (Response response = glmConfiguration.getOkHttpClient().newCall(request).execute()) {
             if (!response.isSuccessful() || response.body() == null) {
                 throw new RuntimeException("fetch response error : " + response);
             }

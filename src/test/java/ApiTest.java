@@ -1,15 +1,15 @@
-import com.arman.gml.sdk.model.EventType;
-import com.arman.gml.sdk.model.Model;
-import com.arman.gml.sdk.model.Prompt;
-import com.arman.gml.sdk.model.Role;
-import com.arman.gml.sdk.model.req.ChatCompletionRequest;
-import com.arman.gml.sdk.model.res.ChatCompletionResponse;
-import com.arman.gml.sdk.model.res.ChatCompletionSseResponse;
-import com.arman.gml.sdk.model.res.R;
-import com.arman.gml.sdk.session.ChatGmlSession;
-import com.arman.gml.sdk.session.ChatGmlSessionFactory;
-import com.arman.gml.sdk.session.GmlConfiguration;
-import com.arman.gml.sdk.session.defaults.DefaultChatGMLSessionFactory;
+import com.arman.glm.sdk.model.EventType;
+import com.arman.glm.sdk.model.Model;
+import com.arman.glm.sdk.model.Prompt;
+import com.arman.glm.sdk.model.Role;
+import com.arman.glm.sdk.model.req.ChatCompletionRequest;
+import com.arman.glm.sdk.model.res.ChatCompletionResponse;
+import com.arman.glm.sdk.model.res.ChatCompletionSseResponse;
+import com.arman.glm.sdk.model.res.R;
+import com.arman.glm.sdk.session.ChatGlmSession;
+import com.arman.glm.sdk.session.ChatGlmSessionFactory;
+import com.arman.glm.sdk.session.GlmConfiguration;
+import com.arman.glm.sdk.session.defaults.DefaultChatGLMSessionFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
@@ -30,18 +30,18 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 public class ApiTest {
 
-    private ChatGmlSession chatGmlSession;
+    private ChatGlmSession chatGlmSession;
 
     @Before
     public void test_OpenAiSessionFactory() {
         // 1. 配置文件
-        GmlConfiguration gmlConfiguration = new GmlConfiguration();
-        gmlConfiguration.setApiHost("https://open.bigmodel.cn/");
-        gmlConfiguration.setApiSecretKey("xxxxx.yyyyyyy");
+        GlmConfiguration glmConfiguration = new GlmConfiguration();
+        glmConfiguration.setApiHost("https://open.bigmodel.cn/");
+        glmConfiguration.setApiSecretKey("xxxxx.yyyyyyy");
         // 2. 会话工厂
-        ChatGmlSessionFactory factory = new DefaultChatGMLSessionFactory(gmlConfiguration);
+        ChatGlmSessionFactory factory = new DefaultChatGLMSessionFactory(glmConfiguration);
         // 3. 开启会话
-        this.chatGmlSession = factory.openSession();
+        this.chatGlmSession = factory.openSession();
     }
 
     /**
@@ -60,7 +60,7 @@ public class ApiTest {
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
         // 请求
-        chatGmlSession.completions(request, new EventSourceListener() {
+        chatGlmSession.completions(request, new EventSourceListener() {
             @SneakyThrows
             @Override
             public void onEvent(@NotNull EventSource eventSource, @Nullable String id, @Nullable String type, @NotNull String data) {
@@ -103,7 +103,7 @@ public class ApiTest {
         request.setPrompt(Lists.newArrayList(prompt));
 
         // 请求
-        R<ChatCompletionResponse> response = chatGmlSession.completions(request);
+        R<ChatCompletionResponse> response = chatGlmSession.completions(request);
 
         response.getData().getChoices().stream().map(Prompt::content).forEach(System.out::println);
     }

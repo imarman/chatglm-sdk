@@ -1,4 +1,4 @@
-package com.arman.gml.sdk.utils;
+package com.arman.glm.sdk.utils;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;

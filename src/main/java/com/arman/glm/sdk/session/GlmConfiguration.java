@@ -1,4 +1,4 @@
-package com.arman.gml.sdk.session;
+package com.arman.glm.sdk.session;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @Getter
 @Setter
-public class GmlConfiguration {
+public class GlmConfiguration {
 
     private String apiHost = "https://open.bigmodel.cn/api/paas/";
 

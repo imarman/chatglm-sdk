@@ -1,8 +1,8 @@
-package com.arman.gml.sdk.session;
+package com.arman.glm.sdk.session;
 
-import com.arman.gml.sdk.model.req.ChatCompletionRequest;
-import com.arman.gml.sdk.model.res.ChatCompletionResponse;
-import com.arman.gml.sdk.model.res.R;
+import com.arman.glm.sdk.model.req.ChatCompletionRequest;
+import com.arman.glm.sdk.model.res.ChatCompletionResponse;
+import com.arman.glm.sdk.model.res.R;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
@@ -11,7 +11,7 @@ import okhttp3.sse.EventSourceListener;
  *
  * @author Arman
  */
-public interface ChatGmlSession {
+public interface ChatGlmSession {
 
     EventSource completions(ChatCompletionRequest chatCompletionRequest, EventSourceListener eventSourceListener);
 

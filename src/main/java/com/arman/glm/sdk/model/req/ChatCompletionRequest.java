@@ -1,7 +1,7 @@
-package com.arman.gml.sdk.model.req;
+package com.arman.glm.sdk.model.req;
 
-import com.arman.gml.sdk.model.Model;
-import com.arman.gml.sdk.model.Prompt;
+import com.arman.glm.sdk.model.Model;
+import com.arman.glm.sdk.model.Prompt;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

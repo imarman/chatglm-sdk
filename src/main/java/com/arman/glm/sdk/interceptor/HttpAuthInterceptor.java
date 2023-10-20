@@ -1,8 +1,8 @@
-package com.arman.gml.sdk.interceptor;
+package com.arman.glm.sdk.interceptor;
 
-import com.arman.gml.sdk.common.Constants;
-import com.arman.gml.sdk.session.GmlConfiguration;
-import com.arman.gml.sdk.utils.BearerTokenUtils;
+import com.arman.glm.sdk.common.Constants;
+import com.arman.glm.sdk.session.GlmConfiguration;
+import com.arman.glm.sdk.utils.BearerTokenUtils;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -20,17 +20,17 @@ public class HttpAuthInterceptor implements Interceptor {
     /**
      * 智普Ai，配置类
      */
-    private final GmlConfiguration gmlConfiguration;
+    private final GlmConfiguration glmConfiguration;
 
-    public HttpAuthInterceptor(GmlConfiguration gmlConfiguration) {
-        this.gmlConfiguration = gmlConfiguration;
+    public HttpAuthInterceptor(GlmConfiguration glmConfiguration) {
+        this.glmConfiguration = glmConfiguration;
     }
 
     @Override
     public @NotNull Response intercept(Chain chain) throws IOException {
 
         // 增强请求
-        String token = Constants.BEARER_HEAD_PREFIX + BearerTokenUtils.getToken(gmlConfiguration.getApiKey(), gmlConfiguration.getApiSecret());
+        String token = Constants.BEARER_HEAD_PREFIX + BearerTokenUtils.getToken(glmConfiguration.getApiKey(), glmConfiguration.getApiSecret());
 
         Request request = chain.request()
                 .newBuilder()

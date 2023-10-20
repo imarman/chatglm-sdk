@@ -1,4 +1,4 @@
-package com.arman.gml.sdk.model.res;
+package com.arman.glm.sdk.model.res;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

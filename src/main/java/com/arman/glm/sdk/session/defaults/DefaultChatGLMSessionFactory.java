@@ -1,10 +1,10 @@
-package com.arman.gml.sdk.session.defaults;
+package com.arman.glm.sdk.session.defaults;
 
 
-import com.arman.gml.sdk.interceptor.HttpAuthInterceptor;
-import com.arman.gml.sdk.session.ChatGmlSession;
-import com.arman.gml.sdk.session.ChatGmlSessionFactory;
-import com.arman.gml.sdk.session.GmlConfiguration;
+import com.arman.glm.sdk.interceptor.HttpAuthInterceptor;
+import com.arman.glm.sdk.session.ChatGlmSession;
+import com.arman.glm.sdk.session.GlmConfiguration;
+import com.arman.glm.sdk.session.ChatGlmSessionFactory;
 import lombok.AllArgsConstructor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -17,13 +17,13 @@ import java.util.concurrent.TimeUnit;
  * @author Arman
  */
 @AllArgsConstructor
-public class DefaultChatGMLSessionFactory implements ChatGmlSessionFactory {
+public class DefaultChatGLMSessionFactory implements ChatGlmSessionFactory {
 
-    private final GmlConfiguration configuration;
+    private final GlmConfiguration configuration;
 
 
     @Override
-    public ChatGmlSession openSession() {
+    public ChatGlmSession openSession() {
         // 1. 日志配置
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(configuration.getLogLevel());
@@ -40,7 +40,7 @@ public class DefaultChatGMLSessionFactory implements ChatGmlSessionFactory {
 
         configuration.setOkHttpClient(okHttpClient);
 
-        return new DefaultChatGMLSession(configuration);
+        return new DefaultChatGLMSession(configuration);
     }
 
 }

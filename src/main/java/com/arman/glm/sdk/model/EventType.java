@@ -1,4 +1,4 @@
-package com.arman.gml.sdk.model;
+package com.arman.glm.sdk.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

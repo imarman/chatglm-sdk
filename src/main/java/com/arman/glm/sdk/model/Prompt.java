@@ -1,4 +1,4 @@
-package com.arman.gml.sdk.model;
+package com.arman.glm.sdk.model;
 
 /**
  * @author Arman

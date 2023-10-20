@@ -1,6 +1,6 @@
-package com.arman.gml.sdk.model.res;
+package com.arman.glm.sdk.model.res;
 
-import com.arman.gml.sdk.model.Prompt;
+import com.arman.glm.sdk.model.Prompt;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
