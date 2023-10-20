@@ -2,7 +2,7 @@ package com.arman.glm.sdk.session.defaults;
 
 import com.arman.glm.sdk.model.req.ChatCompletionRequest;
 import com.arman.glm.sdk.model.res.ChatCompletionResponse;
-import com.arman.glm.sdk.model.res.R;
+import com.arman.glm.sdk.model.res.GlmResponse;
 import com.arman.glm.sdk.session.ChatGlmSession;
 import com.arman.glm.sdk.session.GlmConfiguration;
 import com.arman.glm.sdk.common.Constants;
@@ -58,7 +58,7 @@ public class DefaultChatGLMSession implements ChatGlmSession {
 
     @SneakyThrows
     @Override
-    public R<ChatCompletionResponse> completions(ChatCompletionRequest chatCompletionRequest) {
+    public GlmResponse<ChatCompletionResponse> completions(ChatCompletionRequest chatCompletionRequest) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         // 请求地址
@@ -82,7 +82,7 @@ public class DefaultChatGLMSession implements ChatGlmSession {
             }
 
             String bodyStr = response.body().string();
-            return objectMapper.readValue(bodyStr, new TypeReference<R<ChatCompletionResponse>>() {
+            return objectMapper.readValue(bodyStr, new TypeReference<GlmResponse<ChatCompletionResponse>>() {
             });
         }
 

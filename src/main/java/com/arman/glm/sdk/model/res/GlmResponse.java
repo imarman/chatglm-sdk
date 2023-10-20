@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class R<T> {
+public class GlmResponse<T> {
 
     private T data;
 

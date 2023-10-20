@@ -2,7 +2,7 @@ package com.arman.glm.sdk.session;
 
 import com.arman.glm.sdk.model.req.ChatCompletionRequest;
 import com.arman.glm.sdk.model.res.ChatCompletionResponse;
-import com.arman.glm.sdk.model.res.R;
+import com.arman.glm.sdk.model.res.GlmResponse;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
@@ -15,6 +15,6 @@ public interface ChatGlmSession {
 
     EventSource completions(ChatCompletionRequest chatCompletionRequest, EventSourceListener eventSourceListener);
 
-    R<ChatCompletionResponse> completions(ChatCompletionRequest chatCompletionRequest);
+    GlmResponse<ChatCompletionResponse> completions(ChatCompletionRequest chatCompletionRequest);
 
 }

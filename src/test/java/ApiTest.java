@@ -5,7 +5,7 @@ import com.arman.glm.sdk.model.Role;
 import com.arman.glm.sdk.model.req.ChatCompletionRequest;
 import com.arman.glm.sdk.model.res.ChatCompletionResponse;
 import com.arman.glm.sdk.model.res.ChatCompletionSseResponse;
-import com.arman.glm.sdk.model.res.R;
+import com.arman.glm.sdk.model.res.GlmResponse;
 import com.arman.glm.sdk.session.ChatGlmSession;
 import com.arman.glm.sdk.session.ChatGlmSessionFactory;
 import com.arman.glm.sdk.session.GlmConfiguration;
@@ -103,7 +103,7 @@ public class ApiTest {
         request.setPrompt(Lists.newArrayList(prompt));
 
         // 请求
-        R<ChatCompletionResponse> response = chatGlmSession.completions(request);
+        GlmResponse<ChatCompletionResponse> response = chatGlmSession.completions(request);
 
         response.getData().getChoices().stream().map(Prompt::content).forEach(System.out::println);
     }
